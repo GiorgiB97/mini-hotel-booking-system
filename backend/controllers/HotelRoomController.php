@@ -62,10 +62,8 @@ class HotelRoomController extends Controller
      */
     public function actionCreate()
     {
-        var_dump(LocaleHelper::getLocalesByKeys());
-        echo '<pre>';
-        var_dump(Yii::$app->request->post());exit;
-
+//        var_dump(LocaleHelper::getLocalesByKeys());
+//        echo '<pre>';
         $model = new HotelRoom();
 
 
