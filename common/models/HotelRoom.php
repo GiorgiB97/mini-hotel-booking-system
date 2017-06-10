@@ -8,13 +8,11 @@ use Yii;
  * This is the model class for table "hotel_room".
  *
  * @property integer $id
- * @property string $name
- * @property string $short_description
- * @property string $description
  * @property string $thumbnail
  * @property integer $price
  *
  * @property HotelBooking[] $hotelBookings
+ * @property HotelRoomTranslations[] $hotelRoomTranslations
  */
 class HotelRoom extends \yii\db\ActiveRecord
 {
@@ -32,10 +30,9 @@ class HotelRoom extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description'], 'string'],
             [['price'], 'required'],
             [['price'], 'integer'],
-            [['name', 'short_description', 'thumbnail'], 'string', 'max' => 255],
+            [['thumbnail'], 'string', 'max' => 255],
         ];
     }
 
@@ -46,9 +43,6 @@ class HotelRoom extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('hotel', 'ID'),
-            'name' => Yii::t('hotel', 'Name'),
-            'short_description' => Yii::t('hotel', 'Short Description'),
-            'description' => Yii::t('hotel', 'Description'),
             'thumbnail' => Yii::t('hotel', 'Thumbnail'),
             'price' => Yii::t('hotel', 'Price'),
         ];
@@ -60,6 +54,14 @@ class HotelRoom extends \yii\db\ActiveRecord
     public function getHotelBookings()
     {
         return $this->hasMany(HotelBooking::className(), ['room_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getHotelRoomTranslations()
+    {
+        return $this->hasMany(HotelRoomTranslations::className(), ['room_id' => 'id']);
     }
 
     /**

@@ -8,8 +8,6 @@ class m170610_141534_create_table_hotel_menu extends Migration
     {
         $this->createTable('{{%hotel_menu}}',[
             'id' => $this->primaryKey(),
-            'name' => $this->string(127)->notNull(),
-            'description' => $this->text()->notNull(),
             'price' => $this->integer(4)->notNull()
         ]);
     }

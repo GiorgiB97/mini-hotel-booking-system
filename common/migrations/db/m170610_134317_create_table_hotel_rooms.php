@@ -8,9 +8,6 @@ class m170610_134317_create_table_hotel_rooms extends Migration
     {
         $this->createTable('{{%hotel_room}}',[
             'id' => $this->primaryKey(),
-            'name' => $this->string(255)->null(),
-            'short_description' => $this->string(255)->null(),
-            'description' => $this->text()->null(),
             'thumbnail' => $this->string(255)->null(),
             'price' => $this->integer(4)->notNull()
         ]);

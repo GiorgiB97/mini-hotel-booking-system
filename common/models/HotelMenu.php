@@ -8,11 +8,10 @@ use Yii;
  * This is the model class for table "hotel_menu".
  *
  * @property integer $id
- * @property string $name
- * @property string $description
  * @property integer $price
  *
  * @property HotelBooking[] $hotelBookings
+ * @property HotelMenuTranslations[] $hotelMenuTranslations
  */
 class HotelMenu extends \yii\db\ActiveRecord
 {
@@ -30,10 +29,8 @@ class HotelMenu extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'price'], 'required'],
-            [['description'], 'string'],
+            [['price'], 'required'],
             [['price'], 'integer'],
-            [['name'], 'string', 'max' => 127],
         ];
     }
 
@@ -44,8 +41,6 @@ class HotelMenu extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('hotel', 'ID'),
-            'name' => Yii::t('hotel', 'Name'),
-            'description' => Yii::t('hotel', 'Description'),
             'price' => Yii::t('hotel', 'Price'),
         ];
     }
@@ -56,6 +51,14 @@ class HotelMenu extends \yii\db\ActiveRecord
     public function getHotelBookings()
     {
         return $this->hasMany(HotelBooking::className(), ['menu_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getHotelMenuTranslations()
+    {
+        return $this->hasMany(HotelMenuTranslations::className(), ['menu_id' => 'id']);
     }
 
     /**

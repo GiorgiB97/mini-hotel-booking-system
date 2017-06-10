@@ -10,6 +10,13 @@ use Yii;
  * @property integer $id
  * @property integer $room_id
  * @property integer $menu_id
+ * @property string $name
+ * @property string $surname
+ * @property string $pid
+ * @property string $country
+ * @property string $city
+ * @property string $mobile
+ * @property string $email
  * @property integer $start_date
  * @property integer $end_date
  * @property integer $price
@@ -36,8 +43,13 @@ class HotelBooking extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['room_id', 'menu_id', 'start_date', 'end_date', 'price', 'created_at'], 'required'],
+            [['room_id', 'name', 'surname', 'pid', 'country', 'city', 'mobile', 'start_date', 'end_date', 'price', 'created_at'], 'required'],
             [['room_id', 'menu_id', 'start_date', 'end_date', 'price', 'created_at', 'updated_at', 'deleted_at'], 'integer'],
+            [['name'], 'string', 'max' => 63],
+            [['surname'], 'string', 'max' => 127],
+            [['pid'], 'string', 'max' => 32],
+            [['country', 'city'], 'string', 'max' => 123],
+            [['mobile', 'email'], 'string', 'max' => 31],
             [['menu_id'], 'exist', 'skipOnError' => true, 'targetClass' => HotelMenu::className(), 'targetAttribute' => ['menu_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => HotelRoom::className(), 'targetAttribute' => ['room_id' => 'id']],
         ];
@@ -52,6 +64,13 @@ class HotelBooking extends \yii\db\ActiveRecord
             'id' => Yii::t('hotel', 'ID'),
             'room_id' => Yii::t('hotel', 'Room ID'),
             'menu_id' => Yii::t('hotel', 'Menu ID'),
+            'name' => Yii::t('hotel', 'Name'),
+            'surname' => Yii::t('hotel', 'Surname'),
+            'pid' => Yii::t('hotel', 'Pid'),
+            'country' => Yii::t('hotel', 'Country'),
+            'city' => Yii::t('hotel', 'City'),
+            'mobile' => Yii::t('hotel', 'Mobile'),
+            'email' => Yii::t('hotel', 'Email'),
             'start_date' => Yii::t('hotel', 'Start Date'),
             'end_date' => Yii::t('hotel', 'End Date'),
             'price' => Yii::t('hotel', 'Price'),
