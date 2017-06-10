@@ -8,6 +8,7 @@ class m170610_141534_create_table_hotel_menu extends Migration
     {
         $this->createTable('{{%hotel_menu}}',[
             'id' => $this->primaryKey(),
+            'name' => $this->string(127)->notNull(),
             'description' => $this->text()->notNull(),
             'price' => $this->integer(4)->notNull()
         ]);
@@ -17,19 +18,4 @@ class m170610_141534_create_table_hotel_menu extends Migration
     {
         $this->dropTable('{{%hotel_menu}}');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m170610_141534_create_table_hotel_menu cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

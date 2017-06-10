@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%hotel_room}}".
+ * This is the model class for table "hotel_room".
  *
  * @property integer $id
  * @property string $name
@@ -13,9 +13,8 @@ use Yii;
  * @property string $description
  * @property string $thumbnail
  * @property integer $price
- * @property integer $created_at
- * @property integer $updated_at
- * @property integer $deleted_at
+ *
+ * @property HotelBooking[] $hotelBookings
  */
 class HotelRoom extends \yii\db\ActiveRecord
 {
@@ -24,7 +23,7 @@ class HotelRoom extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%hotel_room}}';
+        return 'hotel_room';
     }
 
     /**
@@ -34,8 +33,8 @@ class HotelRoom extends \yii\db\ActiveRecord
     {
         return [
             [['description'], 'string'],
-            [['price', 'created_at'], 'required'],
-            [['price', 'created_at', 'updated_at', 'deleted_at'], 'integer'],
+            [['price'], 'required'],
+            [['price'], 'integer'],
             [['name', 'short_description', 'thumbnail'], 'string', 'max' => 255],
         ];
     }
@@ -52,10 +51,15 @@ class HotelRoom extends \yii\db\ActiveRecord
             'description' => Yii::t('hotel', 'Description'),
             'thumbnail' => Yii::t('hotel', 'Thumbnail'),
             'price' => Yii::t('hotel', 'Price'),
-            'created_at' => Yii::t('hotel', 'Created At'),
-            'updated_at' => Yii::t('hotel', 'Updated At'),
-            'deleted_at' => Yii::t('hotel', 'Deleted At'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getHotelBookings()
+    {
+        return $this->hasMany(HotelBooking::className(), ['room_id' => 'id']);
     }
 
     /**
