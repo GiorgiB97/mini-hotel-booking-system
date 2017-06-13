@@ -45,7 +45,7 @@ class HotelRoom extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('hotel', 'ID'),
             'thumbnail' => Yii::t('hotel', 'Thumbnail'),
-            'price' => Yii::t('hotel', 'Price'),
+            'price' => Yii::t('hotel', 'Price (lari)'),
         ];
     }
 
