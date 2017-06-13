@@ -1,14 +1,11 @@
 <?php
 /* @var $this yii\web\View */
-use yii\bootstrap\Tabs;
-
 $this->title = Yii::$app->name;
-var_dump(Yii::$app->language);
 ?>
 <div class="site-index">
 
     <?php echo \common\widgets\DbCarousel::widget([
-        'key' => 'index',
+        'key'=>'index',
         'options' => [
             'class' => 'slide', // enables slide effect
         ],
@@ -20,46 +17,23 @@ var_dump(Yii::$app->language);
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
         <?php echo common\widgets\DbMenu::widget([
-            'key' => 'frontend-index',
-            'options' => [
-                'tag' => 'p'
+            'key'=>'frontend-index',
+            'options'=>[
+                'tag'=>'p'
             ]
         ]) ?>
 
     </div>
-    <?php
-    echo Tabs::widget([
-        'items' => [
-            [
-                'label' => 'One',
-                'content' => 'Anim pariatur cliche...',
-                'active' => true
-            ],
-            [
-                'label' => 'Two',
-                'content' => 'Anim pariatur cliche...',
-                'headerOptions' => [],
-                'options' => ['id' => 'myveryownID'],
-            ],
-            [
-                'label' => 'Example',
-                'url' => 'http://www.example.com',
-            ]
-        ],
-    ]);
-    ?>
+
     <div class="body-content">
 
         <div class="row">
             <div class="col-lg-4">
                 <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                     fugiat nulla pariatur.</p>
 
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
@@ -67,12 +41,9 @@ var_dump(Yii::$app->language);
             <div class="col-lg-4">
                 <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                     fugiat nulla pariatur.</p>
 
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
@@ -80,16 +51,12 @@ var_dump(Yii::$app->language);
             <div class="col-lg-4">
                 <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                     fugiat nulla pariatur.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a>
-                </p>
+                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
             </div>
         </div>
 

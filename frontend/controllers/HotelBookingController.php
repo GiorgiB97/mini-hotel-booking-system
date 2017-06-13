@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\models\HotelMenu;
+use common\models\HotelRoom;
 use Yii;
 use common\models\HotelBooking;
 use frontend\models\search\HotelBookingSearch;
@@ -61,12 +63,33 @@ class HotelBookingController extends Controller
     public function actionCreate()
     {
         $model = new HotelBooking();
+        $locale = Yii::$app->language;
+
+        $base_rooms = HotelRoom::find()->all();
+        $base_menus = HotelMenu::find()->all();
+
+        $rooms = [];
+        $menus = [];
+        foreach ($base_rooms as $room){
+            $rooms[] = [
+                'room' => $room,
+                'translations' => $room->getHotelRoomTranslations()->where(['locale' => $locale])->one()
+            ];
+        }
+        foreach ($base_menus as $menu){
+            $menus[] = [
+                'menu' => $menu,
+                'translations' => $menu->getHotelMenuTranslations()->where(['locale' => $locale])->one()
+            ];
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'rooms' => $rooms,
+                'menus' => $menus
             ]);
         }
     }

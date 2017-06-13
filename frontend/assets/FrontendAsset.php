@@ -31,6 +31,7 @@ class FrontendAsset extends AssetBundle
      */
     public $css = [
         'css/style.css',
+        'css/custom.css'
     ];
 
     /**
