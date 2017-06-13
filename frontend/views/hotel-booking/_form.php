@@ -38,12 +38,6 @@ use yii\bootstrap\ActiveForm;
 
     <?php echo $form->field($model, 'price')->textInput() ?>
 
-    <?php echo $form->field($model, 'created_at')->textInput() ?>
-
-    <?php echo $form->field($model, 'updated_at')->textInput() ?>
-
-    <?php echo $form->field($model, 'deleted_at')->textInput() ?>
-
     <div class="form-group">
         <?php echo Html::submitButton($model->isNewRecord ? Yii::t('frontend', 'Create') : Yii::t('frontend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
