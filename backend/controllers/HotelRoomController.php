@@ -62,13 +62,16 @@ class HotelRoomController extends Controller
      */
     public function actionCreate()
     {
-//        var_dump(LocaleHelper::getLocalesByKeys());
-//        echo '<pre>';
         $model = new HotelRoom();
 
+        $request = Yii::$app->request->post();
+        $hotelRoomTranslations = null;
+        if(isset($request['HotelRoomTranslations'])){
+            $hotelRoomTranslations = $request['HotelRoomTranslations'];
+        }
 
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load($request) && $model->saveImage()  && $model->saveWithTranslations($hotelRoomTranslations)) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

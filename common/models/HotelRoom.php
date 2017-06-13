@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "hotel_room".
@@ -30,7 +31,7 @@ class HotelRoom extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['price'], 'required'],
+            [['price','thumbnail'], 'required'],
             [['price'], 'integer'],
             [['thumbnail'], 'string', 'max' => 255],
         ];
@@ -44,7 +45,7 @@ class HotelRoom extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('hotel', 'ID'),
             'thumbnail' => Yii::t('hotel', 'Thumbnail'),
-            'price' => Yii::t('hotel', 'Price'),
+            'price' => Yii::t('hotel', 'Price (lari)'),
         ];
     }
 
@@ -72,4 +73,58 @@ class HotelRoom extends \yii\db\ActiveRecord
     {
         return new \common\models\query\HotelRoomQuery(get_called_class());
     }
+
+
+
+
+
+    public function saveWithTranslations($translations){
+        $transaction = Yii::$app->db->beginTransaction();
+        $check = true;
+        if(!$this->save()){
+            $transaction->rollBack();
+            return false;
+        }
+        foreach ($translations as $key => $value){
+            var_dump($key,$value);
+            $translation = new HotelRoomTranslations();
+            $translation->room_id = $this->id;
+            $translation->name = $value['name'];
+            $translation->description = $value['description'];
+            $translation->locale = $key;
+            if(!$translation->save()){
+                var_dump('aa');
+                $transaction->rollBack();
+                $check = false;
+                break;
+            }
+        }
+        if($check){
+            $transaction->commit();
+            return true;
+        }
+        $transaction->rollBack();
+        return false;
+
+    }
+    public function saveImage(){
+
+        $file = UploadedFile::getInstance($this,'thumbnail');
+        if(!isset($file)){
+            return true;
+        }
+        $path =  Yii::getAlias('@storage').'/web/source/room';
+        if(!is_dir($path)){
+            mkdir($path);
+        }
+        $name = Yii::$app->security->generateRandomString(16).'.'.$file->getExtension();
+        $path = $path.'/'.$name;
+        $this->thumbnail = $name;
+        if($file->saveAs($path)){
+            return true;
+        }
+        return false;
+    }
+
+
 }

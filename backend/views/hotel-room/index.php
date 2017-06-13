@@ -30,7 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'thumbnail',
             'price',
 
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

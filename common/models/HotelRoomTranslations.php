@@ -11,7 +11,6 @@ use Yii;
  * @property integer $room_id
  * @property string $locale
  * @property string $name
- * @property string $short_description
  * @property string $description
  *
  * @property HotelRoom $room
@@ -36,7 +35,7 @@ class HotelRoomTranslations extends \yii\db\ActiveRecord
             [['room_id'], 'integer'],
             [['description'], 'string'],
             [['locale'], 'string', 'max' => 10],
-            [['name', 'short_description'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => HotelRoom::className(), 'targetAttribute' => ['room_id' => 'id']],
         ];
     }

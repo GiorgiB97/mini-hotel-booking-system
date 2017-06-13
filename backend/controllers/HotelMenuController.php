@@ -62,7 +62,14 @@ class HotelMenuController extends Controller
     {
         $model = new HotelMenu();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $request = Yii::$app->request->post();
+        $hotelRoomTranslations = null;
+        if(isset($request['HotelMenuTranslations'])){
+            $HotelMenuTranslations = $request['HotelMenuTranslations'];
+        }
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->saveWithTranslations($HotelMenuTranslations)) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

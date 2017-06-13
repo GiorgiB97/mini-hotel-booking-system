@@ -41,7 +41,7 @@ class HotelMenu extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('hotel', 'ID'),
-            'price' => Yii::t('hotel', 'Price'),
+            'price' => Yii::t('hotel', 'Price (lari)'),
         ];
     }
 
@@ -68,5 +68,34 @@ class HotelMenu extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \common\models\query\HotelMenuQuery(get_called_class());
+    }
+
+    public function saveWithTranslations($translations){
+        $transaction = Yii::$app->db->beginTransaction();
+        $check = true;
+        if(!$this->save()){
+            $transaction->rollBack();
+            return false;
+        }
+        foreach ($translations as $key => $value){
+            var_dump($key,$value);
+            $translation = new HotelMenuTranslations();
+            $translation->menu_id = $this->id;
+            $translation->name = $value['name'];
+            $translation->description = $value['description'];
+            $translation->locale = $key;
+            if(!$translation->save()){
+                var_dump('aa');
+                $transaction->rollBack();
+                $check = false;
+                break;
+            }
+        }
+        if($check){
+            $transaction->commit();
+            return true;
+        }
+        $transaction->rollBack();
+        return false;
     }
 }
