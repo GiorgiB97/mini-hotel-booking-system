@@ -62,6 +62,7 @@ class HotelBookingController extends Controller
      */
     public function actionCreate()
     {
+//        var_dump(Yii::$app->request->post());exit;
         $model = new HotelBooking();
         $locale = Yii::$app->language;
 

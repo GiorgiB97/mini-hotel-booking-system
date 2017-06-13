@@ -16,19 +16,31 @@ use yii\bootstrap\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= Tabs::widget([
+        'options' => [
+            'class' => 'booking-tabs'
+        ],
         'items' => [
             [
                 'label' => 'Rooms',
                 'content' => $this->render('room_view', ['model' => $model, 'form' => $form, 'rooms' => $rooms]),
-                'active' => true
+                'active' => true,
+                'linkOptions' => [
+                    'id' => 'tab1'
+                ]
             ],
             [
                 'label' => 'Menu',
                 'content' => $this->render('menu_view', ['model' => $model, 'form' => $form,'menus' => $menus]),
+                'linkOptions' => [
+                        'id' => 'tab2'
+                ]
             ],
             [
                 'label' => 'Credentials',
                 'content' => $this->render('credentials_view', ['model' => $model, 'form' => $form]),
+                'linkOptions' => [
+                    'id' => 'tab3'
+                ]
             ],
         ]]);
     ?>
