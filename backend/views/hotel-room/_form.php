@@ -17,28 +17,28 @@ $translationClass = new \common\models\HotelRoomTranslations();
 
     <?php echo $form->errorSummary($model); ?>
 
-    <?php echo $form->field($model, 'thumbnail')->textInput(['maxlength' => true]) ?>
+    <?php echo $form->field($model, 'thumbnail')->fileInput() ?>
 
     <?php echo $form->field($translationClass,'name')->textInput([
-            'name' => "{$className}[name][En]"
-    ]) ?>
+            'name' => "{$className}[en-US][name]"
+    ])->label('Name English') ?>
     <?php echo $form->field($translationClass,'name')->textInput([
-        'name' => "{$className}[name][Ge]"
-    ]) ?>
+        'name' => "{$className}[ka-Ka][name]"
+    ])->label('Name Georgian') ?>
     <?php echo $form->field($translationClass,'name')->textInput([
-        'name' => "{$className}[name][Rus]"
-    ]) ?>
+        'name' => "{$className}[ru-RU][name]"
+    ])->label('Name Russian') ?>
 
 
-    <?php echo $form->field($translationClass,'description')->textInput([
-        'name' => "{$className}[description][En]"
-    ]) ?>
-    <?php echo $form->field($translationClass,'description')->textInput([
-        'name' => "{$className}[description][Ge]"
-    ]) ?>
-    <?php echo $form->field($translationClass,'description')->textInput([
-        'name' => "{$className}[description][Rus]"
-    ]) ?>
+    <?php echo $form->field($translationClass,'description')->textarea([
+        'name' => "{$className}[en-US][description]"
+    ])->label('Description English') ?>
+    <?php echo $form->field($translationClass,'description')->textarea([
+        'name' => "{$className}[ka-Ka][description]"
+    ])->label('Description Georgian') ?>
+    <?php echo $form->field($translationClass,'description')->textarea([
+        'name' => "{$className}[ru-RU][description]"
+    ])->label('Description Russian') ?>
 
     <?php echo $form->field($model, 'price')->textInput() ?>
 
