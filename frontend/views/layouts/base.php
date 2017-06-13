@@ -22,7 +22,8 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
         'items' => [
             ['label' => Yii::t('frontend', 'Home'), 'url' => ['/site/index']],
             ['label' => Yii::t('frontend', 'About'), 'url' => ['/page/view', 'slug'=>'about']],
-            ['label' => Yii::t('frontend', 'Articles'), 'url' => ['/article/index']],
+            ['label' => Yii::t('frontend', 'Rooms'), 'url' => ['/rooms/index']],
+            ['label' => Yii::t('frontend', 'Booking'), 'url' => ['/hotel-booking/create']],
             ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact']],
             [
                 'label' => Yii::$app->user->isGuest ? '' : Yii::$app->user->identity->getPublicIdentity(),
