@@ -20,11 +20,11 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
     <?php echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => Yii::t('frontend', 'Home'), 'url' => ['/site/index']],
-            ['label' => Yii::t('frontend', 'About'), 'url' => ['/page/view', 'slug'=>'about']],
-            ['label' => Yii::t('frontend', 'Rooms'), 'url' => ['/rooms/index']],
-            ['label' => Yii::t('frontend', 'Booking'), 'url' => ['/hotel-booking/create']],
-            ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact']],
+            ['label' => Yii::t('hotel', 'Home'), 'url' => ['/site/index']],
+            ['label' => Yii::t('hotel','About'), 'url' => ['/page/view', 'slug'=>'about']],
+            ['label' => Yii::t('hotel','Rooms'), 'url' => ['/rooms/index']],
+            ['label' => Yii::t('hotel','Booking'), 'url' => ['/hotel-booking/create']],
+            ['label' => Yii::t('hotel','Contact'), 'url' => ['/site/contact']],
             [
                 'label' => Yii::$app->user->isGuest ? '' : Yii::$app->user->identity->getPublicIdentity(),
                 'visible'=>!Yii::$app->user->isGuest,
@@ -46,7 +46,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                 ]
             ],
             [
-                'label'=>Yii::t('frontend', 'Language'),
+                'label'=>Yii::t('hotel', 'Language'),
                 'items'=>array_map(function ($code) {
                     return [
                         'label' => Yii::$app->params['availableLocales'][$code],

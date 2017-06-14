@@ -95,6 +95,22 @@ class HotelBookingController extends Controller
         }
     }
 
+
+    public function actionCountPrice(){
+        $request = Yii::$app->request->post();
+        $menu_id = $request['menu_id'];
+        $room_id = $request['room_id'];
+
+        $sum_price = null;
+        $room = HotelRoom::find()->byId($room_id)->one();
+        $menu = HotelMenu::find()->byId($menu_id)->one();
+        if($room && $menu){
+            $sum_price = $room->price + $menu->price;
+            return $sum_price;
+        }
+        return $sum_price;
+    }
+
     /**
      * Updates an existing HotelBooking model.
      * If update is successful, the browser will be redirected to the 'view' page.

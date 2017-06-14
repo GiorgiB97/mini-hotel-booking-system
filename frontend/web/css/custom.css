@@ -65,6 +65,7 @@
     padding: 10px;
     box-shadow: none;
     position: relative;
+    border: 2px solid #cecece;
 }
 
 .room-select .roomBtnGroup .roomItem.active {
@@ -74,13 +75,17 @@
 }
 
 .room-select .roomBtnGroup .roomItem .thumb {
-    border: 2px solid transparent;
     transition: all 0.5s;
 }
 
 .room-select .roomBtnGroup .roomItem .thumb .title{
   margin-top: 10px;
+    font-size: 19px;
 }
+.room-select .roomBtnGroup .roomItem .thumb .price{
+    margin-top: 10px;
+}
+
 
 .room-select .roomBtnGroup .roomItem .thumb img {
     width: 100%;

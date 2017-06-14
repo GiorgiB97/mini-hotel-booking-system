@@ -26,14 +26,14 @@
                     <div class="card-block">
                         <h4 class="card-title"><?= $name ?></h4>
                         <div class="meta">
-                            Price: <?= $room_price ?> GEL
+                            <?= Yii::t('hotel', 'Price') ?> : <?= $room_price ?> GEL
                         </div>
                         <div class="card-text">
                             <?= \yii\helpers\StringHelper::truncate($description,45) ?>
                         </div>
                     </div>
                     <div class="card-footer text-right">
-                        <span><?= \yii\helpers\Html::a('Read more',['/rooms/view','id'=> $room_id]) ?></span>
+                        <span><?= \yii\helpers\Html::a(Yii::t('hotel', 'Read more..'),['/rooms/view','id'=> $room_id]) ?></span>
                     </div>
                 </div>
             </div>

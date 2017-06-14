@@ -43,7 +43,7 @@ class HotelBooking extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['room_id', 'name', 'surname', 'pid', 'country', 'city', 'mobile', 'start_date', 'end_date', 'price', 'created_at'], 'required'],
+            [['room_id', 'name', 'surname', 'pid', 'country', 'city', 'mobile', 'start_date', 'end_date', 'price'], 'required'],
             [['room_id', 'menu_id', 'start_date', 'end_date', 'price', 'created_at', 'updated_at', 'deleted_at'], 'integer'],
             [['name'], 'string', 'max' => 63],
             [['surname'], 'string', 'max' => 127],
