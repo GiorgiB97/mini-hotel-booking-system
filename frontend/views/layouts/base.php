@@ -21,8 +21,9 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => Yii::t('hotel', 'Home'), 'url' => ['/site/index']],
-            ['label' => Yii::t('hotel','About'), 'url' => ['/page/view', 'slug'=>'about']],
+            ['label' => Yii::t('hotel','About'), 'url' => ['/site/about']],
             ['label' => Yii::t('hotel','Rooms'), 'url' => ['/rooms/index']],
+            ['label' => Yii::t('hotel','Menu'), 'url' => ['/menu/index']],
             ['label' => Yii::t('hotel','Booking'), 'url' => ['/hotel-booking/create']],
             ['label' => Yii::t('hotel','Contact'), 'url' => ['/site/contact']],
             [
