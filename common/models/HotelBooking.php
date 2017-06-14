@@ -66,7 +66,7 @@ class HotelBooking extends \yii\db\ActiveRecord
             'menu_id' => Yii::t('hotel', 'Menu ID'),
             'name' => Yii::t('hotel', 'Name'),
             'surname' => Yii::t('hotel', 'Surname'),
-            'pid' => Yii::t('hotel', 'Pid'),
+            'pid' => Yii::t('hotel', 'Personal ID'),
             'country' => Yii::t('hotel', 'Country'),
             'city' => Yii::t('hotel', 'City'),
             'mobile' => Yii::t('hotel', 'Mobile'),
