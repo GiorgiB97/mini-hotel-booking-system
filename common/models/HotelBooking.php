@@ -74,7 +74,7 @@ class HotelBooking extends \yii\db\ActiveRecord
             'email' => Yii::t('hotel', 'Email'),
             'start_date' => Yii::t('hotel', 'Start Date'),
             'end_date' => Yii::t('hotel', 'End Date'),
-            'price' => Yii::t('hotel', 'Price'),
+            'price' => Yii::t('hotel', 'Price per day'),
             'created_at' => Yii::t('hotel', 'Created At'),
             'updated_at' => Yii::t('hotel', 'Updated At'),
             'deleted_at' => Yii::t('hotel', 'Deleted At'),

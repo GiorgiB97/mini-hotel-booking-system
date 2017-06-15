@@ -12,38 +12,47 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="hotel-booking-index">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModHOel]); ?>
 
     <p>
         <?php echo Html::a(Yii::t('frontend', 'Create {modelClass}', [
-    'modelClass' => 'Hotel Booking',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+            'modelClass' => 'Hotel Booking',
+        ]), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'room_id',
             'menu_id',
             'name',
             'surname',
-            // 'pid',
-            // 'country',
-            // 'city',
-            // 'mobile',
-            // 'email:email',
-            // 'start_date',
-            // 'end_date',
-            // 'price',
+            'pid',
+            'country',
+            'city',
+            'mobile',
+            'email:email',
+            [
+                'attribute' => 'start_date',
+                'value' => function($model){
+                    return date('F j Y', $model->start_date);
+                }
+
+            ],
+            [
+                'attribute' => 'end_date',
+                'value' => function($model){
+                    return date('F j Y', $model->end_date);
+                }
+
+            ],
+            'price',
             // 'created_at',
             // 'updated_at',
             // 'deleted_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
