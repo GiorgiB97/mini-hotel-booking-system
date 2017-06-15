@@ -66,8 +66,11 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?php echo date('Y') ?></p>
-        <p class="pull-right"><?php echo Yii::powered() ?></p>
+        <p class="pull-left">&copy; Hotel Mariam <?php echo date('Y') ?></p>
+        <p class="pull-right">Made by
+            <a href="https://github.com/GiorgiB97">Giorgi Batiashvili (Frontend)</a> and
+            <a href="https://github.com/Saiat3">Saiat Kalbiev (Backend)</a>
+        </p>
     </div>
 </footer>
 <?php $this->endContent() ?>
