@@ -22,7 +22,8 @@ class m170610_142341_create_table_hotel_booking extends Migration
             'price' => $this->integer(5)->notNull(),
             'created_at' => $this->integer(11)->notNull(),
             'updated_at' => $this->integer(11)->null(),
-            'deleted_at' => $this->integer(11)->null()
+            'deleted_at' => $this->integer(11)->null(),
+            'is_confirmed' => $this->integer(1)->null()->defaultValue(0)
         ]);
 
         $this->addForeignKey(

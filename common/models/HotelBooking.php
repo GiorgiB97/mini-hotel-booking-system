@@ -23,6 +23,7 @@ use Yii;
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $deleted_at
+ * @property integer $is_confirmed
  *
  * @property HotelMenu $menu
  * @property HotelRoom $room
@@ -44,7 +45,7 @@ class HotelBooking extends \yii\db\ActiveRecord
     {
         return [
             [['room_id', 'name', 'surname', 'pid', 'country', 'city', 'mobile', 'start_date', 'end_date', 'price'], 'required'],
-            [['room_id', 'menu_id', 'start_date', 'end_date', 'price', 'created_at', 'updated_at', 'deleted_at'], 'integer'],
+            [['room_id', 'menu_id', 'price', 'created_at', 'updated_at', 'deleted_at','is_confirmed'], 'integer'],
             [['name'], 'string', 'max' => 63],
             [['surname'], 'string', 'max' => 127],
             [['pid'], 'string', 'max' => 32],
@@ -77,6 +78,7 @@ class HotelBooking extends \yii\db\ActiveRecord
             'created_at' => Yii::t('hotel', 'Created At'),
             'updated_at' => Yii::t('hotel', 'Updated At'),
             'deleted_at' => Yii::t('hotel', 'Deleted At'),
+            'is_confirmed' => Yii::t('hotel', 'Confirmed'),
         ];
     }
 
@@ -103,5 +105,29 @@ class HotelBooking extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \common\models\query\HotelBookingQuery(get_called_class());
+    }
+
+    /**
+     * @author Saiat Kalbiev <kalbievich11@gmail.com>
+     * @param $book []
+     */
+    public function customSave($book){
+        $this->room_id = $book['room_id'];
+        $this->menu_id = $book['menu_id'];
+        $this->name = $book['name'];
+        $this->surname = $book['surname'];
+        $this->pid = $book['pid'];
+        $this->country = $book['country'];
+        $this->city = $book['city'];
+        $this->mobile = $book['mobile'];
+        $this->email = $book['email'];
+        $this->start_date = strtotime($book['start_date']);
+        $this->end_date = strtotime($book['end_date']);
+        $this->price = $book['price'];
+        $this->created_at = time();
+        if($this->save()){
+            return true;
+        }
+        return false;
     }
 }

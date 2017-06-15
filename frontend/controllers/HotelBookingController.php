@@ -62,8 +62,9 @@ class HotelBookingController extends Controller
      */
     public function actionCreate()
     {
-//        var_dump(Yii::$app->request->post());exit;
         $model = new HotelBooking();
+        $freeModel = new HotelBooking();
+
         $locale = Yii::$app->language;
 
         $base_rooms = HotelRoom::find()->all();
@@ -71,32 +72,72 @@ class HotelBookingController extends Controller
 
         $rooms = [];
         $menus = [];
-        foreach ($base_rooms as $room){
+        foreach ($base_rooms as $room) {
             $rooms[] = [
                 'room' => $room,
                 'translations' => $room->getHotelRoomTranslations()->where(['locale' => $locale])->one()
             ];
         }
-        foreach ($base_menus as $menu){
+        foreach ($base_menus as $menu) {
             $menus[] = [
                 'menu' => $menu,
                 'translations' => $menu->getHotelMenuTranslations()->where(['locale' => $locale])->one()
             ];
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-                'rooms' => $rooms,
-                'menus' => $menus
-            ]);
+        $request = Yii::$app->request->post();
+
+        if (isset($request['HotelBooking'])) {
+            $book = $request['HotelBooking'];
+            $start_date = strtotime($book['start_date']);
+            $end_date = strtotime($book['end_date']);
+
+            $hotelBooked = HotelBooking::find()->where([
+                'room_id' => 10
+            ])->andWhere('(start_date <= :startDate and end_date >= :startDate) or (start_date <= :endDate and end_date >= :endDate)')
+                ->addParams([
+                    ':startDate' => 1496707200,
+                    ':endDate' => 1497571200
+                ])->one();
+
+            if ($hotelBooked) {
+                return $this->render('create', [
+                    'model' => $freeModel,
+                    'rooms' => $rooms,
+                    'menus' => $menus,
+                    'success' => false,
+                    'booked_start_date' => date('F j Y', $hotelBooked->start_date),
+                    'booked_end_date' => date('F j Y', $hotelBooked->end_date),
+                ]);
+            } else {
+                if ($model->customSave($book)) {
+                    return $this->render('create', [
+                        'model' => $freeModel,
+                        'rooms' => $rooms,
+                        'menus' => $menus,
+                        'success' => true
+                    ]);
+                } else {
+                    return $this->render('create', [
+                        'model' => $freeModel,
+                        'rooms' => $rooms,
+                        'menus' => $menus,
+                        'success' => false
+                    ]);
+                }
+            }
         }
+        return $this->render('create', [
+            'model' => $model,
+            'rooms' => $rooms,
+            'menus' => $menus
+        ]);
+
     }
 
 
-    public function actionCountPrice(){
+    public function actionCountPrice()
+    {
         $request = Yii::$app->request->post();
         $menu_id = $request['menu_id'];
         $room_id = $request['room_id'];
@@ -104,7 +145,7 @@ class HotelBookingController extends Controller
         $sum_price = null;
         $room = HotelRoom::find()->byId($room_id)->one();
         $menu = HotelMenu::find()->byId($menu_id)->one();
-        if($room && $menu){
+        if ($room && $menu) {
             $sum_price = $room->price + $menu->price;
             return $sum_price;
         }
