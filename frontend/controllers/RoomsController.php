@@ -34,7 +34,7 @@ class RoomsController extends Controller
     {
         $locale = \Yii::$app->language;
         $room = HotelRoom::find()->byId($id)->one();
-        $translations = $room->getHotelRoomTranslations()->andWhere(['locale' => $locale]);
+        $translations = $room->getHotelRoomTranslations()->andWhere(['locale' => $locale])->one();
 
         return $this->render('view', [
             'room' => $room,

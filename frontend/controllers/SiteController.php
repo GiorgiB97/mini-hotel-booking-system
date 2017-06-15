@@ -39,6 +39,7 @@ class SiteController extends Controller
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post())) {
+            var_dump($model->contact(Yii::$app->params['adminEmail']));exit;
             if ($model->contact(Yii::$app->params['adminEmail'])) {
                 Yii::$app->getSession()->setFlash('alert', [
                     'body'=>Yii::t('frontend', 'Thank you for contacting us. We will respond to you as soon as possible.'),

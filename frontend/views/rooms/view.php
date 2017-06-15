@@ -26,14 +26,9 @@
 
                 </div>
                 <div class="details col-md-6">
-                    <h3 class="product-title">men's shoes fashion</h3>
-
-                    <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia
-                        sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
-                    <h4 class="price">current price: <span>$180</span></h4>
-                    <div class="action">
-                        <button class="add-to-cart btn btn-default" type="button">Daijavshnee gmertoooo !!!</button>
-                    </div>
+                    <h3 class="product-title"><?= $translations->name?></h3>
+                    <p class="product-description"><?= $translations->description ?></p>
+                    <h4 class="price"><?= Yii::t('hotel','Price') ?> : <span><?= $room->price ?> GEL</span></h4>
                 </div>
             </div>
         </div>
