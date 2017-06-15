@@ -36,25 +36,35 @@ use yii\bootstrap\Html;
 </div>
 <div class="row">
     <div class="col-md-6">
-        <?= $form->field($model, 'email')->textInput(['maxlength' => true]); ?>
+        <?= $form->field($model, 'start_date')->widget(\yii\jui\DatePicker::className(),[
+            'options' => [
+                'class' => 'form-control'
+            ]
+        ]) ?>
     </div>
     <div class="col-md-6">
-        <?= $form->field($model, 'start_date')->textInput(); ?>
+        <?= $form->field($model, 'end_date')->widget(\yii\jui\DatePicker::className(),[
+            'options' => [
+                'class' => 'form-control'
+            ]
+        ]) ?>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6">
-        <?= $form->field($model, 'end_date')->textInput(); ?>
+        <?= $form->field($model, 'email')->textInput(['maxlength' => true]); ?>
     </div>
     <div class="col-md-6">
-        <?= $form->field($model, 'price')->textInput(); ?>
+        <?= $form->field($model, 'price')->textInput([
+            'class' => "lastPrice1 form-control",
+        ])->label(Yii::t('hotel','Price per day')); ?>
     </div>
 </div>
 
 
 <div class="text-center page-control">
-    <a onclick="$('#tab2').trigger('click')" class="btn btn-warning">Previous</a>
-    <?php echo Html::submitButton($model->isNewRecord ? Yii::t('frontend', 'Create') : Yii::t('frontend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    <a onclick="$('#tab2').trigger('click')" class="btn btn-warning"><?= Yii::t('hotel', 'Previous') ?></a>
+    <?php echo Html::submitButton($model->isNewRecord ? Yii::t('hotel', 'Book') : Yii::t('frontend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 </div>
 
 <div class="form-group">

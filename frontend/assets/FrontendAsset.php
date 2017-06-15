@@ -39,6 +39,7 @@ class FrontendAsset extends AssetBundle
      */
     public $js = [
         'js/app.js',
+        'js/custom.js'
     ];
 
     /**

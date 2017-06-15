@@ -27,6 +27,7 @@ use yii\bootstrap\Html;
         <?php
         foreach ($rooms as $room) {
             $room_id = $room['room']->id;
+            $room_price = $room['room']->price;
             $room_thumbnail = Yii::getAlias('@storageUrl') . '/source/room/' . $room['room']->thumbnail;
             $name = $room['translations']->name; ?>
 
@@ -37,8 +38,9 @@ use yii\bootstrap\Html;
                             'class' => 'img-responsive'
                         ]) ?>
                         <p class="title"> <?= $name ?></p>
+                        <p class="price"><b><i><?= Yii::t('hotel','Price') ?> <?= $room_price ?> GEL </i></b> </p>
                     </div>
-                    <input value="<?= $room_id ?>" type="radio" name="room_id" hidden>
+                    <input value="<?= $room_id ?>" type="radio" name="HotelBooking[room_id]" id="checked_room_id" hidden>
                 </label>
             </div>
         <?php } ?>
@@ -46,7 +48,7 @@ use yii\bootstrap\Html;
 </div>
 
 <div class="text-center page-control">
-    <a onclick="$('#tab2').trigger('click')" class="btn btn-orange">Next</a>
+    <a onclick="$('#tab2').trigger('click')" class="btn btn-orange"><?= Yii::t('hotel','Next') ?></a>
 </div>
 
 

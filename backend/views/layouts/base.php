@@ -24,7 +24,7 @@ $this->params['body-class'] = array_key_exists('body-class', $this->params) ?
     <title><?php echo Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
-</head>Russian
+</head>
 <?php echo Html::beginTag('body', [
     'class' => implode(' ', [
         ArrayHelper::getValue($this->params, 'body-class'),

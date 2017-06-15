@@ -21,7 +21,7 @@ use yii\bootstrap\ActiveForm;
         ],
         'items' => [
             [
-                'label' => 'Rooms',
+                'label' => Yii::t('hotel','Rooms'),
                 'content' => $this->render('room_view', ['model' => $model, 'form' => $form, 'rooms' => $rooms]),
                 'active' => true,
                 'linkOptions' => [
@@ -29,14 +29,14 @@ use yii\bootstrap\ActiveForm;
                 ]
             ],
             [
-                'label' => 'Menu',
+                'label' => Yii::t('hotel','Menu'),
                 'content' => $this->render('menu_view', ['model' => $model, 'form' => $form,'menus' => $menus]),
                 'linkOptions' => [
                         'id' => 'tab2'
                 ]
             ],
             [
-                'label' => 'Credentials',
+                'label' => Yii::t('hotel','Credentials'),
                 'content' => $this->render('credentials_view', ['model' => $model, 'form' => $form]),
                 'linkOptions' => [
                     'id' => 'tab3'
