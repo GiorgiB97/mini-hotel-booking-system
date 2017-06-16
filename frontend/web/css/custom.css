@@ -52,13 +52,6 @@
     border:0 !important;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
 .room-select .roomBtnGroup {
     padding: 30px;
     width: 100%;

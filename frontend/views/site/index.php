@@ -17,5 +17,6 @@ $this->title = Yii::$app->name;
         <?php echo common\widgets\DbCarousel::widget([
             'key' => 'home-page'
         ]); ?>
-        
+
     </div>
+</div>
