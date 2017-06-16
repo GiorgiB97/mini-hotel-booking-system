@@ -67,6 +67,10 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; Hotel Mariam <?php echo date('Y') ?></p>
+        <p class="pull-right">Made by
+            <a href="https://github.com/GiorgiB97">Frontender</a> and
+            <a href="https://github.com/Saiat3">Backender</a>
+        </p>
     </div>
 </footer>
 <?php $this->endContent() ?>
