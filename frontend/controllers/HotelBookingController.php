@@ -96,8 +96,8 @@ class HotelBookingController extends Controller
                 'room_id' => 10
             ])->andWhere('(start_date <= :startDate and end_date >= :startDate) or (start_date <= :endDate and end_date >= :endDate)')
                 ->addParams([
-                    ':startDate' => 1496707200,
-                    ':endDate' => 1497571200
+                    ':startDate' => $start_date,
+                    ':endDate' => $end_date
                 ])->one();
 
             if ($hotelBooked) {
