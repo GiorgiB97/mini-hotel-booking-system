@@ -20,7 +20,7 @@
                         <p><b><i><?= Yii::t('hotel','Price') ?> <?= $menu['menu']->price ?> GEL</i></b></p>
                         <p><?= \yii\helpers\StringHelper::truncate($menu['translations']->description,25) ?></p>
                     </div>
-                    <input type="radio" name="HotelBooking[menu_id]" hidden value="<?= $menu['menu']->id ?>" id="checked_menu_id">
+                    <input required type="radio" name="HotelBooking[menu_id]" hidden value="<?= $menu['menu']->id ?>" id="checked_menu_id">
                 </label>
             </div>
        <?php } ?>

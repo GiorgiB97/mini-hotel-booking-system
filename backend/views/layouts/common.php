@@ -145,16 +145,17 @@ $bundle = BackendAsset::register($this);
                         'badge' => TimelineEvent::find()->today()->count(),
                         'badgeBgClass' => 'label-success',
                     ],
+                    ['label' => Yii::t('backend', 'Carousel Widgets'), 'url' => ['/widget-carousel/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                    ['label' => Yii::t('backend', 'Menu'), 'url' => ['/hotel-menu/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                    ['label' => Yii::t('backend', 'Rooms'), 'url' => ['/hotel-room/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
                     [
-                        'label' => Yii::t('backend', 'Content'),
+                        'label' => Yii::t('backend', 'Booking'),
                         'url' => '#',
                         'icon' => '<i class="fa fa-edit"></i>',
                         'options' => ['class' => 'treeview'],
                         'items' => [
-                            ['label' => Yii::t('backend', 'Rooms'), 'url' => ['/hotel-room/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                            ['label' => Yii::t('backend', 'Menu'), 'url' => ['/hotel-menu/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                            ['label' => Yii::t('backend', 'Booking'), 'url' => ['/hotel-booking/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                            ['label' => Yii::t('backend', 'Carousel Widgets'), 'url' => ['/widget-carousel/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                            ['label' => Yii::t('backend', 'Confirmed'), 'url' => ['/hotel-booking/confirmed'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
+                            ['label' => Yii::t('backend', 'Non Confirmed'), 'url' => ['/hotel-booking/non-confirmed'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
                         ]
                     ],
                     [

@@ -31,4 +31,8 @@ class HotelBookingQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function byId($id){
+        return $this->andWhere(['id' => $id]);
+    }
 }

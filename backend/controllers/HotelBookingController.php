@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\HotelBooking;
 use backend\models\search\HotelBookingSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,53 +24,89 @@ class HotelBookingController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index'],
+            ]
         ];
     }
+
 
     /**
      * Lists all HotelBooking models.
      * @return mixed
      */
-    public function actionIndex()
-    {
-        $searchModel = new HotelBookingSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//    public function actionIndex()
+//    {
+//        $searchModel = new HotelBookingSearch();
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,false);
+//
+//        return $this->render('index', [
+//            'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider,
+//        ]);
+//    }
 
-        return $this->render('index', [
+    public function actionConfirmed(){
+        $searchModel = new HotelBookingSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,true);
+
+        return $this->render('confirmed', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
+    public function actionNonConfirmed(){
+        $searchModel = new HotelBookingSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,false);
+
+        return $this->render('non-confirmed', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionConfirm($id = null){
+        if($id){
+            $hotelbooking = HotelBooking::find()->byId($id)->one();
+            if($hotelbooking->confirm()){
+                return $this->redirect('/hotel-booking/confirmed');
+            }
+        }else{
+
+            return $this->redirect('/hotel-booking/non-confirmed');
+        }
+    }
     /**
      * Displays a single HotelBooking model.
      * @param integer $id
      * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
+//     */
+//    public function actionView($id)
+//    {
+//        return $this->render('view', [
+//            'model' => $this->findModel($id),
+//        ]);
+//    }
 
     /**
      * Creates a new HotelBooking model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
-        $model = new HotelBooking();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
+//    public function actionCreate()
+//    {
+//        $model = new HotelBooking();
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('create', [
+//                'model' => $model,
+//            ]);
+//        }
+//    }
 
     /**
      * Updates an existing HotelBooking model.
@@ -77,18 +114,18 @@ class HotelBookingController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
+//    public function actionUpdate($id)
+//    {
+//        $model = $this->findModel($id);
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
+//    }
 
     /**
      * Deletes an existing HotelBooking model.

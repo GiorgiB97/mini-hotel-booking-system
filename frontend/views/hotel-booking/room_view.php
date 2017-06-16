@@ -40,7 +40,7 @@ use yii\bootstrap\Html;
                         <p class="title"> <?= $name ?></p>
                         <p class="price"><b><i><?= Yii::t('hotel','Price') ?> <?= $room_price ?> GEL </i></b> </p>
                     </div>
-                    <input value="<?= $room_id ?>" type="radio" name="HotelBooking[room_id]" id="checked_room_id" hidden>
+                    <input required value="<?= $room_id ?>" type="radio" name="HotelBooking[room_id]" id="checked_room_id" hidden>
                 </label>
             </div>
         <?php } ?>

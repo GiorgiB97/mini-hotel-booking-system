@@ -39,9 +39,14 @@ class HotelBookingSearch extends HotelBooking
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$confirmed)
     {
-        $query = HotelBooking::find();
+        if($confirmed){
+            $query = HotelBooking::find()->where(['is_confirmed' => 1]);
+        }else{
+            $query = HotelBooking::find()->where(['is_confirmed' => 0]);
+        }
+
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

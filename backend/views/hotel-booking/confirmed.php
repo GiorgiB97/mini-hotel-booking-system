@@ -43,15 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
 
             ],
-            'price',
-            [
-                'format' => ['html'],
-                'value' =>  function($model){
-                    return Html::a('Confirm',
-                        ['hotel-booking/confirm','id'=>$model->id],
-                        ['class'=>'btn btn-danger']);
-                }
-            ]
+            'price'
         ],
     ]); ?>
 

@@ -32,28 +32,28 @@ class HotelBookingController extends Controller
      * Lists all HotelBooking models.
      * @return mixed
      */
-    public function actionIndex()
-    {
-        $searchModel = new HotelBookingSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
+//    public function actionIndex()
+//    {
+//        $searchModel = new HotelBookingSearch();
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//
+//        return $this->render('index', [
+//            'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider,
+//        ]);
+//    }
 
     /**
      * Displays a single HotelBooking model.
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
+//    public function actionView($id)
+//    {
+//        return $this->render('view', [
+//            'model' => $this->findModel($id),
+//        ]);
+//    }
 
     /**
      * Creates a new HotelBooking model.
@@ -86,20 +86,32 @@ class HotelBookingController extends Controller
         }
 
         $request = Yii::$app->request->post();
-
+//        var_dump($request);exit;
         if (isset($request['HotelBooking'])) {
             $book = $request['HotelBooking'];
             $start_date = strtotime($book['start_date']);
             $end_date = strtotime($book['end_date']);
 
+
+            if ($start_date > $end_date) {
+                return $this->render('create', [
+                    'model' => $freeModel,
+                    'rooms' => $rooms,
+                    'menus' => $menus,
+                    'success' => false
+                ]);
+            }
+
             $hotelBooked = HotelBooking::find()->where([
-                'room_id' => 10
-            ])->andWhere('(start_date <= :startDate and end_date >= :startDate) or (start_date <= :endDate and end_date >= :endDate)')
-                ->addParams([
+                'room_id' => $book['room_id']
+            ])->andWhere(
+                '(start_date <= :startDate and end_date >= :startDate) or 
+                            (start_date <= :endDate and end_date >= :endDate) or 
+                            (start_date >= :startDate and end_date <= :endDate)'
+            )->addParams([
                     ':startDate' => $start_date,
                     ':endDate' => $end_date
                 ])->one();
-
             if ($hotelBooked) {
                 return $this->render('create', [
                     'model' => $freeModel,
@@ -158,18 +170,18 @@ class HotelBookingController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
+//    public function actionUpdate($id)
+//    {
+//        $model = $this->findModel($id);
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
+//    }
 
     /**
      * Deletes an existing HotelBooking model.
@@ -177,12 +189,12 @@ class HotelBookingController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
+//    public function actionDelete($id)
+//    {
+//        $this->findModel($id)->delete();
+//
+//        return $this->redirect(['index']);
+//    }
 
     /**
      * Finds the HotelBooking model based on its primary key value.

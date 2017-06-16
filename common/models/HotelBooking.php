@@ -130,4 +130,12 @@ class HotelBooking extends \yii\db\ActiveRecord
         }
         return false;
     }
+
+    public function confirm(){
+        $this->is_confirmed = 1;
+        if($this->save()){
+            return true;
+        }
+        return false;
+    }
 }

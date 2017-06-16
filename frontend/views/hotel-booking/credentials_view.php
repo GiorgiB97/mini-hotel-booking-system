@@ -37,6 +37,7 @@ use yii\bootstrap\Html;
 <div class="row">
     <div class="col-md-6">
         <?= $form->field($model, 'start_date')->widget(\yii\jui\DatePicker::className(),[
+            'language' => 'en',
             'options' => [
                 'class' => 'form-control'
             ]
@@ -44,6 +45,7 @@ use yii\bootstrap\Html;
     </div>
     <div class="col-md-6">
         <?= $form->field($model, 'end_date')->widget(\yii\jui\DatePicker::className(),[
+                'language' => 'en',
             'options' => [
                 'class' => 'form-control'
             ]
@@ -57,6 +59,7 @@ use yii\bootstrap\Html;
     <div class="col-md-6">
         <?= $form->field($model, 'price')->textInput([
             'class' => "lastPrice1 form-control",
+            'readonly' => true
         ])->label(Yii::t('hotel','Price per day')); ?>
     </div>
 </div>
