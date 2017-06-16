@@ -8,7 +8,6 @@ use yii\captcha\Captcha;
 /* @var $model \frontend\models\ContactForm */
 
 $this->title = 'Contact';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
     <h1><?php echo Html::encode($this->title) ?></h1>
@@ -24,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                 ]) ?>
                 <div class="form-group">
-                    <?php echo Html::submitButton(Yii::t('frontend', 'Submit'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                    <?php echo Html::submitButton(Yii::t('frontend', 'Submit'), ['class' => 'btn btn-success', 'name' => 'contact-button']) ?>
                 </div>
             <?php ActiveForm::end(); ?>
         </div>
@@ -34,14 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
             <script>
                 function myMap() {
                     var mapProp= {
-                        center:new google.maps.LatLng(51.508742,-0.120850),
-                        zoom:5,
+                        center:new google.maps.LatLng(41.9946436,41.7605781),
+                        zoom:15,
                     };
                     var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
                 }
             </script>
 
-            <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUeshuGEMxDV1Kdf-CUbeIr7JHgVG8yIo&callback=myMap"></script>
         </div>
     </div>
 
